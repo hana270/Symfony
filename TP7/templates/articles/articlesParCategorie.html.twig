@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des Articles par Catégorie
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">Rechercher des Articles</h5>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                    <div class="form-row align-items-end">
+                        <div class="col">
+                            {{ form_row(form.category, {'attr': {'class': 'form-control', 'placeholder': 'Sélectionner une catégorie'}}) }}
+                        
+                            <button type="submit" class="btn btn-outline-dark btn-sm">Rechercher</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+
+                    {% if articles %}
+                        <div class="mt-4">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr> 
+                                        <th>Nom</th> 
+                                        <th>Prix</th>
+                                        <th>Catégorie</th>
+                                        <th>Actions</th> 
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                    {% for article in articles %}
+                                        <tr>
+                                            <td>{{ article.nom }}</td>
+                                            <td>{{ article.prix }}</td>
+                                            <td>{{ article.category.titre }}</td>  
+                                            <td> 
+                                                <a href="/article/{{ article.id }}" class="btn btn-outline-dark">Détails</a> 
+                                                <a href="/article/edit/{{ article.id }}" class="btn btn-outline-dark">Modifier</a> 
+                                                <a href="/article/delete/{{ article.id }}" class="btn btn-outline-danger" onclick="return confirm('Etes-vous sûr de supprimer cet article?');">Supprimer</a> 
+                                            </td>
+                                        </tr> 
+                                    {% endfor %}
+                                </tbody> 
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center mt-3">Aucun article trouvé.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
