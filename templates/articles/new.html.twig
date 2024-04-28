@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajouter Article
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">Ajouter Article</h5>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'article-form'}}) }}
+                    {{ form_widget(form) }} 
+                     <button type="submit" class="btn btn-success btn-block">Créer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
